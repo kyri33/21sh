@@ -70,9 +70,15 @@ int		main(void)
 {
 	t_env		e;
 	t_term		term;
+	char		c;
 
 	get_environ(&e);
 	init_term(&term);
-	begin_shell(&e);
+	//begin_shell(&e);
+	while (1)
+	{
+		read(0, &c, 1);
+		ft_putchar(c);
+	}
 	return (1);
 }
