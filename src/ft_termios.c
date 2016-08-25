@@ -18,7 +18,7 @@ void	ft_add(char c, char **line, t_to *to)
 		*line = ft_strnew(1);
 	*line = ft_addchar(*line, c);
 	ft_putchar(c);
-	to->x++;
+	(void) to;//to->x++;
 }
 
 int	ft_getline(char **line, t_to *to)

@@ -47,7 +47,6 @@ void	begin_shell(t_env *e, t_to *to)
 	ft_putstr("21$h > ");
 	while (ft_getline(&e->line, to))
 			;
-	ft_putstr(e->line);
 	if (ft_strcmp(e->line, "exit") != 0)
 	{
 		if (ft_strcmp(e->line, "") != 0)
