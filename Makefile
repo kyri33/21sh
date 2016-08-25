@@ -1,6 +1,6 @@
 NAME = 21sh
 
-SRC = src/ft_addchar.c src/commands.c src/mem.c src/main.c src/environ.c src/term_init.c src/ft_termios.c libft/libft.a
+SRC = src/cursor.c src/ft_addchar.c src/commands.c src/mem.c src/main.c src/environ.c src/term_init.c src/ft_termios.c libft/libft.a
 
 FLAGS = clang -Werror -Wextra -Wall -g -I includes -o
 

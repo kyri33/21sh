@@ -21,6 +21,7 @@ void	init_term(t_to *term)
 {
 	tgetent(NULL, getenv("TERM"));
 	tcgetattr(0, &term->tattr);
+	tcgetattr(0, &term->b_tattr);
 	tputs(tgetstr("ti", NULL), 1, ft_ft_putchar); //Clears the screen
 	tputs(tgetstr("ho", NULL), 1, ft_ft_putchar); //Places cursor at top left of screen
 	term->tattr.c_lflag &= ~(ECHO | ICANON);
@@ -29,4 +30,9 @@ void	init_term(t_to *term)
 	tcsetattr(0, 0, &term->tattr);
 	//tputs(tgetstr("vi", NULL), 1, ft_ft_putchar); make the cursor invisible.
 	term->x = -1;
+}
+
+void	reset_term(t_to *term)
+{
+	tcsetattr(0, 0, &term->b_tattr);
 }

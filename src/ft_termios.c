@@ -12,14 +12,13 @@
 
 #include "twentyonesh.h"
 
-void	ft_print(char c, char **line, t_to *to)
+void	ft_add(char c, char **line, t_to *to)
 {
-	(void) to;
 	if (!(*line))
 		*line = ft_strnew(1);
 	*line = ft_addchar(*line, c);
 	ft_putchar(c);
-	//to->x++;
+	to->x++;
 }
 
 int	ft_getline(char **line, t_to *to)
@@ -29,12 +28,14 @@ int	ft_getline(char **line, t_to *to)
 	ft_strclr(b);
 	read(0, b, 6);
 	if (ft_isprint(b[0]))
-		ft_print(b[0], line, to);
+		ft_add(b[0], line, to);
 	else if (b[0] == 10)
 	{
 		ft_putstr("\n");
 		return (0);
 	}
+	else if (b[0] == 27 && b[1] == 91 && b[2] != 51)
+		ft_move_cursor(b[2], to);
 	else
 	{
 		int	i = 0;

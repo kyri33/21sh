@@ -65,6 +65,7 @@ void	begin_shell(t_env *e, t_to *to)
 		free(e->line);
 		e->line = NULL;
 		free_tab(e->environ);
+		reset_term(to);
 	}
 }
 

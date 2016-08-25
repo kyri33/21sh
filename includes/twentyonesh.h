@@ -22,6 +22,7 @@ typedef struct	s_to
 {
 	struct termios	tattr;
 	int				x;
+	struct termios	b_tattr; //Save a pointer to the old terminal to reset
 }				t_to;
 
 void			init_term(t_to *to);
@@ -29,5 +30,7 @@ int				ft_getline(char **line, t_to *to);
 int				ft_ft_putchar(int c);
 char			*ft_addchar(char *line, char c);
 void			ft_print(char c, char **line, t_to *to);
+void			reset_term(t_to *term);
+void			ft_move_cursor(char c, t_to *to);
 
 #endif
