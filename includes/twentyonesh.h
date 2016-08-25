@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   twentyonesh.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/09 14:40:12 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/25 17:44:37 by kioulian         ###   ########.fr       */
+/*   Created: 2016/08/25 14:54:48 by kioulian          #+#    #+#             */
+/*   Updated: 2016/08/25 17:41:45 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dst, const char *src)
-{
-	int	i;
+#ifndef TWENTYONESH_H
+# define TWENTYONESH_H
 
-	i = 0;
-	while (src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
-}
+# include "minishell.h"
+# include <termios.h>
+# include <term.h>
+# include <termcap.h>
+
+typedef struct	s_to
+{
+	struct termios	tattr;
+	int				x;
+}				t_to;
+
+void			init_term(t_to *to);
+int				ft_getline(char **line, t_to *to);
+int				ft_ft_putchar(int c);
+char			*ft_addchar(char *line, char c);
+
+#endif

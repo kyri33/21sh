@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_addchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/09 14:40:12 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/25 17:44:37 by kioulian         ###   ########.fr       */
+/*   Created: 2016/08/25 17:37:14 by kioulian          #+#    #+#             */
+/*   Updated: 2016/08/25 17:46:28 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dst, const char *src)
-{
-	int	i;
+#include "twentyonesh.h"
 
-	i = 0;
-	while (src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
+char	*ft_addchar(char *line, char c)
+{
+	char	*str;
+
+	str = ft_strnew(ft_strlen(line) + 2);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(line) + 2));
+	*str = '\0';
+	ft_strcpy(str, line);
+	str[ft_strlen(str)] = c;
+	return (str);
 }

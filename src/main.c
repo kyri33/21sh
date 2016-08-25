@@ -6,11 +6,11 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 18:37:09 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/21 18:26:51 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/25 17:37:33 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "21sh.h"
+#include "twentyonesh.h"
 
 int		search_commands(t_env *e)
 {
@@ -42,10 +42,12 @@ void	process_line(t_env *e)
 		run_command(e);
 }
 
-void	begin_shell(t_env *e)
+void	begin_shell(t_env *e, t_to *to)
 {
-	ft_putstr("$> ");
-	get_next_line(0, &e->line);
+	ft_putstr("21$h > ");
+	while (ft_getline(&e->line, to))
+			;
+	ft_putstr(e->line);
 	if (ft_strcmp(e->line, "exit") != 0)
 	{
 		if (ft_strcmp(e->line, "") != 0)
@@ -56,7 +58,7 @@ void	begin_shell(t_env *e)
 			if (e->args)
 				free_tab(e->args);
 		}
-		begin_shell(e);
+		begin_shell(e, to);
 	}
 	else
 	{
@@ -69,16 +71,10 @@ void	begin_shell(t_env *e)
 int		main(void)
 {
 	t_env		e;
-	t_term		term;
-	char		c;
+	t_to		to;
 
 	get_environ(&e);
-	init_term(&term);
-	//begin_shell(&e);
-	while (1)
-	{
-		read(0, &c, 1);
-		ft_putchar(c);
-	}
+	init_term(&to);
+	begin_shell(&e, &to);
 	return (1);
 }
