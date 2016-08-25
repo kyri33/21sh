@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 18:37:09 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/25 17:37:33 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/25 18:39:11 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int		main(void)
 	t_env		e;
 	t_to		to;
 
+	e.line = NULL;
 	get_environ(&e);
 	init_term(&to);
 	begin_shell(&e, &to);
