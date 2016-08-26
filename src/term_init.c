@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 14:52:44 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/25 18:33:59 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/26 10:21:56 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	init_term(t_to *term)
 	term->tattr.c_cc[VTIME] = 0;
 	tcsetattr(0, 0, &term->tattr);
 	//tputs(tgetstr("vi", NULL), 1, ft_ft_putchar); make the cursor invisible.
-	term->x = -1;
+	term->x = 0;
+	term->max_x = 0;
 }
 
 void	reset_term(t_to *term)

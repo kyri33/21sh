@@ -2,14 +2,20 @@
 
 void	ft_move_left(t_to *to)
 {
-	to->x--;
-	tputs(tgetstr("le", NULL), 1, ft_ft_putchar);
+	if (to->x > 0)
+	{
+		to->x--;
+		tputs(tgetstr("le", NULL), 1, ft_ft_putchar);
+	}
 }
 
 void	ft_move_right(t_to *to)
 {
-	to->x++;
-	tputs(tgetstr("nd", NULL), 1, ft_ft_putchar);
+	if (to->x < to->max_x)
+	{
+		to->x++;
+		tputs(tgetstr("nd", NULL), 1, ft_ft_putchar);
+	}
 }
 
 void	ft_move_cursor(char c, t_to *to)
