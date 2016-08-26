@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 18:37:09 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/26 10:23:42 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/26 11:38:09 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	process_line(t_env *e)
 
 void	begin_shell(t_env *e, t_to *to)
 {
-	ft_putstr(" 21$h > ");
+	ft_putstr("21$h > ");
 	ft_getline(&e->line, to);
-			;
+		;
 	if (ft_strcmp(e->line, "exit") != 0)
 	{
 		if (ft_strcmp(e->line, "") != 0)

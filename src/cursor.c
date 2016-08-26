@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cursor.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/08/26 11:11:10 by kioulian          #+#    #+#             */
+/*   Updated: 2016/08/26 11:41:24 by kioulian         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "twentyonesh.h"
 
 void	ft_move_left(t_to *to)
@@ -15,6 +27,18 @@ void	ft_move_right(t_to *to)
 	{
 		to->x++;
 		tputs(tgetstr("nd", NULL), 1, ft_ft_putchar);
+	}
+}
+
+void	ft_replace_cursor(t_to *to)
+{
+	int	i;
+
+	i = to->x;
+	while (i < to->max_x)
+	{
+		tputs(tgetstr("le", NULL), 1, ft_ft_putchar);
+		i++;
 	}
 }
 

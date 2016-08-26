@@ -6,20 +6,20 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 16:19:05 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/26 10:32:13 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/26 11:41:22 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twentyonesh.h"
 
-void	ft_add(char c, char **line, t_to *to)
+int		ft_add(char c, char **line, t_to *to)
 {
 	if (!(*line))
 		*line = ft_strnew(1);
 	*line = ft_addchar(*line, c);
-	ft_putchar(c);
 	to->x++;
 	to->max_x++;
+	return (1);
 }
 
 int		ft_newline(t_to *to)
@@ -30,7 +30,24 @@ int		ft_newline(t_to *to)
 	return (0);
 }
 
-void	ft_backspace(t_to *to, char **line)
+void	ft_showline(char *line, t_to *to)
+{
+	int	i;
+
+	i = 0;
+	while (i < to->max_x + 7)
+	{
+		tputs(tgetstr("le", NULL), 1, ft_ft_putchar);
+		tputs(" ", 1, ft_ft_putchar);
+		tputs(tgetstr("le", NULL), 1, ft_ft_putchar);
+		i++;
+	}
+	tputs("21$h > ", 1, ft_ft_putchar);
+	tputs(line, 1, ft_ft_putchar);
+	ft_replace_cursor(to);
+}
+
+int		ft_backspace(t_to *to, char **line)
 {
 	if (to->x > 0)
 	{
@@ -38,26 +55,31 @@ void	ft_backspace(t_to *to, char **line)
 		tputs(" ", 1, ft_ft_putchar);
 		tputs(tgetstr("le", NULL), 1, ft_ft_putchar);
 		to->x--;
+		*line = ft_removechar(to, *line, to->x);
+		to->max_x--;
+		return (1);
 	}
-	(void) line;
+	return (0);
 }
 
 int		ft_getline(char **line, t_to *to)
 {
+	char	b[6];
+	int		check;
+
 	while (1)
 	{
-		char	b[6];
-
+		check = 0;
 		ft_strclr(b);
 		read(0, b, 6);
 		if (ft_isprint(b[0]))
-			ft_add(b[0], line, to);
+			check = ft_add(b[0], line, to);
 		else if (b[0] == 10)
 			return (ft_newline(to));
 		else if (b[0] == 27 && b[1] == 91 && b[2] != 51)
 			ft_move_cursor(b[2], to);
 		else if (b[0] == 127)
-			ft_backspace(to, line);
+			check = ft_backspace(to, line);
 		else
 		{
 			int	i = 0;
@@ -68,5 +90,7 @@ int		ft_getline(char **line, t_to *to)
 				i++;
 			}
 		}
+		if (check)
+			ft_showline(*line, to);
 	}
 }

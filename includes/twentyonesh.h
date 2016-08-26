@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 14:54:48 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/26 10:20:37 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/26 11:38:47 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ char			*ft_addchar(char *line, char c);
 void			ft_print(char c, char **line, t_to *to);
 void			reset_term(t_to *term);
 void			ft_move_cursor(char c, t_to *to);
+char			*ft_removechar(t_to *to, char *line, int index);
+void			ft_replace_cursor(t_to *to);
 
 #endif
