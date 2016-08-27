@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 14:54:48 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/27 14:40:11 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/27 17:23:02 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 
 # include "minishell.h"
 # include <termios.h>
-# include <term.h>
 # include <termcap.h>
 
 typedef struct	s_to
 {
 	struct termios	tattr;
 	int				x;
+	char			**history;
+	int				y;
 	int				max_x;
 	int				old_x;
 	struct termios	b_tattr; //Save a pointer to the old terminal to reset
@@ -35,7 +36,9 @@ void			ft_print(char c, char **line, t_to *to);
 void			reset_term(t_to *term);
 void			ft_move_cursor(char c, t_to *to);
 char			*ft_removechar(t_to *to, char *line, int index);
-void			ft_replace_cursor(t_to *to);
-void			ft_cursorend(t_to *to);
+int				ft_replace_cursor(t_to *to);
+int				ft_cursorend(t_to *to);
+char			**ft_addhistory(char **tab, char *str);
+char			*ft_histup(t_to *to, char *line);
 
 #endif

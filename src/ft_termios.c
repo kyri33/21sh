@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 16:19:05 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/27 15:01:00 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/27 17:08:42 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,16 @@ int		ft_add(char c, char **line, t_to *to)
 	return (1);
 }
 
-int		ft_newline(t_to *to)
+int		ft_newline(t_to *to, char **line)
 {
 	ft_putstr("\n");
+	if (*line[0])
+		to->history = ft_addhistory(to->history, *line);
 	to->x = 0;
+	to->y = 0;
 	to->max_x = 0;
 	return (0);
 }
-
 
 void	ft_showline(char *line, t_to *to)
 {
@@ -75,7 +77,7 @@ int		ft_getline(char **line, t_to *to)
 		if (ft_isprint(b[0]))
 			check = ft_add(b[0], line, to);
 		else if (b[0] == 10)
-			return (ft_newline(to));
+			return (ft_newline(to, line));
 		else if (b[0] == 27 && b[1] == 91 && b[2] != 51)
 			ft_move_cursor(b[2], to);
 		else if (b[0] == 127)

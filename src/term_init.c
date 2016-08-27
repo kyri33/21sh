@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 14:52:44 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/26 11:15:02 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/27 17:08:18 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int		ft_ft_putchar(int c)
 
 void	init_term(t_to *term)
 {
+	int	i;
+
 	tgetent(NULL, getenv("TERM"));
 	tcgetattr(0, &term->tattr);
 	tcgetattr(0, &term->b_tattr);
@@ -30,7 +32,12 @@ void	init_term(t_to *term)
 	tcsetattr(0, 0, &term->tattr);
 	//tputs(tgetstr("vi", NULL), 1, ft_ft_putchar); make the cursor invisible.
 	term->x = 0;
+	term->y = 0;
 	term->max_x = 0;
+	term->history = (char **)malloc(sizeof(char*) * 11);
+	i = -1;
+	while (++i < 11)
+		term->history[i] = 0;
 }
 
 void	reset_term(t_to *term)
