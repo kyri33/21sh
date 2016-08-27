@@ -30,12 +30,14 @@ int		ft_newline(t_to *to)
 	return (0);
 }
 
+
 void	ft_showline(char *line, t_to *to)
 {
 	int	i;
 
 	i = 0;
-	while (i < to->max_x + 7)
+	ft_cursorend(to);
+	while (i < to->max_x + 8)
 	{
 		tputs(tgetstr("le", NULL), 1, ft_ft_putchar);
 		tputs(" ", 1, ft_ft_putchar);
@@ -51,9 +53,6 @@ int		ft_backspace(t_to *to, char **line)
 {
 	if (to->x > 0)
 	{
-		tputs(tgetstr("le", NULL), 1, ft_ft_putchar);
-		tputs(" ", 1, ft_ft_putchar);
-		tputs(tgetstr("le", NULL), 1, ft_ft_putchar);
 		to->x--;
 		*line = ft_removechar(to, *line, to->x);
 		to->max_x--;

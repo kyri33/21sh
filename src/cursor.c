@@ -30,6 +30,12 @@ void	ft_move_right(t_to *to)
 	}
 }
 
+void	ft_cursorend(t_to *to)
+{
+	while (to->x < to->max_x)
+		ft_move_right(to);
+}
+
 void	ft_replace_cursor(t_to *to)
 {
 	int	i;
