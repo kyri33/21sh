@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 11:11:10 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/27 17:22:57 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/27 18:34:32 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_replace_cursor(t_to *to)
 	return (0);
 }
 
-int	ft_move_cursor(char c, t_to *to)
+int	ft_move_cursor(char c, t_to *to, char **line)
 {
 	if (c == 68)
 		return (ft_move_left(to));
@@ -54,8 +54,11 @@ int	ft_move_cursor(char c, t_to *to)
 		return (ft_move_right(to));
 	else if (c == 72) // home
 		;
-	else if (c == 65) // up
-		;
+	else if (c == 65)
+	{
+		*line = ft_histup(to, *line);
+		return (1);
+	}
 	else if (c == 66) // down
 		;
 	else if (c == 70)

@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 16:53:16 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/27 17:22:59 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/27 18:36:26 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_histup(t_to *to, char *line)
 		{
 			free(line);
 			to->y++;
-			return (to->history[y]);
+			return (ft_strdup(to->history[to->y - 1]));
 		}
 	}
 	return (line);

@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 16:19:05 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/27 17:08:42 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/27 18:36:24 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	ft_showline(char *line, t_to *to)
 	}
 	tputs("21$h > ", 1, ft_ft_putchar);
 	tputs(line, 1, ft_ft_putchar);
+	to->max_x = ft_strlen(line);
+	to->x = to->max_x;
 	ft_replace_cursor(to);
 }
 
@@ -79,7 +81,7 @@ int		ft_getline(char **line, t_to *to)
 		else if (b[0] == 10)
 			return (ft_newline(to, line));
 		else if (b[0] == 27 && b[1] == 91 && b[2] != 51)
-			ft_move_cursor(b[2], to);
+			check = ft_move_cursor(b[2], to, line);
 		else if (b[0] == 127)
 			check = ft_backspace(to, line);
 		else

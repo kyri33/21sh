@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 18:37:09 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/26 11:38:09 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/27 18:19:20 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	begin_shell(t_env *e, t_to *to)
 		free(e->line);
 		e->line = NULL;
 		free_tab(e->environ);
+		free_tab(to->history);
 		reset_term(to);
 	}
 }
