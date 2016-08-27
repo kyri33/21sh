@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 16:19:05 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/26 11:41:22 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/27 15:01:00 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_showline(char *line, t_to *to)
 	int	i;
 
 	i = 0;
+	to->old_x = to->x;
 	ft_cursorend(to);
 	while (i < to->max_x + 8)
 	{
