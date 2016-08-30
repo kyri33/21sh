@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 18:37:09 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/27 18:19:20 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/30 16:28:54 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,28 @@ void	begin_shell(t_env *e, t_to *to)
 	ft_putstr("21$h > ");
 	ft_getline(&e->line, to);
 		;
-	if (ft_strcmp(e->line, "exit") != 0)
+	if (e->line)
 	{
-		if (ft_strcmp(e->line, "") != 0)
+		if (ft_strcmp(e->line, "exit") != 0)
 		{
 			process_line(e);
 			free(e->line);
 			e->line = NULL;
 			if (e->args)
 				free_tab(e->args);
+			begin_shell(e, to);
 		}
-		begin_shell(e, to);
+		else
+		{
+			free(e->line);
+			e->line = NULL;
+			free_tab(e->environ);
+			free_tab(to->history);
+			reset_term(to);
+		}
 	}
 	else
-	{
-		free(e->line);
-		e->line = NULL;
-		free_tab(e->environ);
-		free_tab(to->history);
-		reset_term(to);
-	}
+		begin_shell(e, to);
 }
 
 int		main(void)

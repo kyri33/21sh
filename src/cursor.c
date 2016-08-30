@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/26 11:11:10 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/27 18:34:32 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/30 16:25:20 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ int	ft_move_right(t_to *to)
 
 int	ft_cursorend(t_to *to)
 {
-	while (to->x < to->max_x)
-		ft_move_right(to);
+	int	i;
+
+	i = to->x - 1;
+	while (++i < to->max_x)
+		tputs(tgetstr("nd", NULL), 1, ft_ft_putchar);
 	return (0);
 }
 
@@ -43,6 +46,9 @@ int	ft_replace_cursor(t_to *to)
 {
 	while (to->old_x < to->x)
 		ft_move_left(to);
+	if (to->old_x > to->x)
+		to->x = to->max_x;
+	to->old_x = 0;
 	return (0);
 }
 
@@ -59,8 +65,11 @@ int	ft_move_cursor(char c, t_to *to, char **line)
 		*line = ft_histup(to, *line);
 		return (1);
 	}
-	else if (c == 66) // down
-		;
+	else if (c == 66)
+	{
+		*line = ft_histdown(to, *line);
+		return (1);
+	}
 	else if (c == 70)
 		return (ft_cursorend(to));
 	return (0);

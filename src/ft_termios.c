@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 16:19:05 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/27 18:36:24 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/30 16:28:56 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_add(char c, char **line, t_to *to)
 int		ft_newline(t_to *to, char **line)
 {
 	ft_putstr("\n");
-	if (*line[0])
+	if (*line && *line[0])
 		to->history = ft_addhistory(to->history, *line);
 	to->x = 0;
 	to->y = 0;
@@ -38,19 +38,13 @@ void	ft_showline(char *line, t_to *to)
 	int	i;
 
 	i = 0;
-	to->old_x = to->x;
-	ft_cursorend(to);
-	while (i < to->max_x + 8)
-	{
-		tputs(tgetstr("le", NULL), 1, ft_ft_putchar);
-		tputs(" ", 1, ft_ft_putchar);
-		tputs(tgetstr("le", NULL), 1, ft_ft_putchar);
-		i++;
-	}
+	if (!to->old_x)
+		to->old_x = to->x;
+	ft_clear(to);
 	tputs("21$h > ", 1, ft_ft_putchar);
 	tputs(line, 1, ft_ft_putchar);
-	to->max_x = ft_strlen(line);
-	to->x = to->max_x;
+	if (line)
+		to->max_x = ft_strlen(line);
 	ft_replace_cursor(to);
 }
 
@@ -60,7 +54,6 @@ int		ft_backspace(t_to *to, char **line)
 	{
 		to->x--;
 		*line = ft_removechar(to, *line, to->x);
-		to->max_x--;
 		return (1);
 	}
 	return (0);

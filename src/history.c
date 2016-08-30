@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 16:53:16 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/27 18:36:26 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/08/30 16:19:55 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,23 @@ char   	**ft_addhistory(char **tab, char *str)
 	return (temp);
 }
 
+void	ft_clear(t_to *to)
+{
+	int	i;
+
+	i = 0;
+	ft_cursorend(to);
+	while (i < to->max_x + 8)
+	{
+		tputs(tgetstr("le", NULL), 1, ft_ft_putchar);
+		tputs(" ", 1, ft_ft_putchar);
+		tputs(tgetstr("le", NULL), 1, ft_ft_putchar);
+		i++;
+	}
+	to->max_x = 0;
+	to->x = 0;
+}
+
 char	*ft_histup(t_to *to, char *line)
 {
 	if (to->y < 10)
@@ -43,7 +60,25 @@ char	*ft_histup(t_to *to, char *line)
 		if (to->history[to->y])
 		{
 			free(line);
+			to->old_x = ft_strlen(to->history[to->y]);
 			to->y++;
+			ft_clear(to);
+			return (ft_strdup(to->history[to->y - 1]));
+		}
+	}
+	return (line);
+}
+
+char	*ft_histdown(t_to *to, char *line)
+{
+	if (to->y > 0)
+	{
+		to->y--;
+		if (to->history[to->y - 1])
+		{
+			free(line);
+			to->old_x = ft_strlen(to->history[to->y - 1]);
+			ft_clear(to);
 			return (ft_strdup(to->history[to->y - 1]));
 		}
 	}
