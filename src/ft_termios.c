@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 16:19:05 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/30 16:28:56 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/09/01 14:04:43 by dnematan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_showline(char *line, t_to *to)
 	tputs(line, 1, ft_ft_putchar);
 	if (line)
 		to->max_x = ft_strlen(line);
+	to->x = to->max_x;
 	ft_replace_cursor(to);
 }
 
