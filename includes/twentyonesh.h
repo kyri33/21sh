@@ -31,7 +31,7 @@ typedef struct	s_to
 void			init_term(t_to *to);
 int				ft_getline(char **line, t_to *to);
 int				ft_ft_putchar(int c);
-char			*ft_addchar(char *line, char c);
+char			*ft_addchar(char *line, char c, int index);
 void			ft_print(char c, char **line, t_to *to);
 void			reset_term(t_to *term);
 int				ft_move_cursor(char c, t_to *to, char **line);

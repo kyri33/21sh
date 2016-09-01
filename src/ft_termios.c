@@ -16,7 +16,7 @@ int		ft_add(char c, char **line, t_to *to)
 {
 	if (!(*line))
 		*line = ft_strnew(1);
-	*line = ft_addchar(*line, c);
+	*line = ft_addchar(*line, c, to->x);
 	to->x++;
 	to->max_x++;
 	return (1);
