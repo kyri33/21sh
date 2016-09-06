@@ -34,14 +34,27 @@ char	*ft_removechar(t_to *to, char *line, int index)
 	return (str);
 }
 
-char	*ft_addchar(char *line, char c)
+char	*ft_addchar(char *line, char c, int index)
 {
 	char	*str;
+	int		i;
+	int		j;
 
+	i = 0;
+	j = 0;
 	str = ft_strnew(ft_strlen(line) + 2);
-	*str = '\0';
-	ft_strcpy(str, line);
-	str[ft_strlen(str)] = c;
+	str[index] = c;
+	while (line[i])
+	{
+		if (j == index)
+			j++;
+		else
+		{
+			str[j] = line[i];
+			i++;
+			j++;
+		}
+	}
 	free(line);
 	line = NULL;
 	return (str);

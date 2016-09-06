@@ -6,7 +6,11 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 16:19:05 by kioulian          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2016/09/06 10:10:08 by kioulian         ###   ########.fr       */
+=======
+/*   Updated: 2016/09/01 14:04:43 by dnematan         ###   ########.fr       */
+>>>>>>> 1f89d38534d5f36df1c96b201ead5c26f2c431b4
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +20,7 @@ int		ft_add(char c, char **line, t_to *to)
 {
 	if (!(*line))
 		*line = ft_strnew(1);
-	*line = ft_addchar(*line, c);
+	*line = ft_addchar(*line, c, to->x);
 	to->x++;
 	to->max_x++;
 	return (1);
@@ -45,6 +49,7 @@ void	ft_showline(char *line, t_to *to)
 	tputs(line, 1, ft_ft_putchar);
 	if (line)
 		to->max_x = ft_strlen(line);
+	to->x = to->max_x;
 	ft_replace_cursor(to);
 }
 
