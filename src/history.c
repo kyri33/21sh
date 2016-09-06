@@ -6,17 +6,17 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 16:53:16 by kioulian          #+#    #+#             */
-/*   Updated: 2016/09/01 14:03:55 by dnematan         ###   ########.fr       */
+/*   Updated: 2016/09/06 12:13:49 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twentyonesh.h"
 
-char   	**ft_addhistory(char **tab, char *str)
+char	**ft_addhistory(char **tab, char *str)
 {
-	char   	**temp;
-	int    		i;
-	int    		x;
+	char	**temp;
+	int		i;
+	int		x;
 
 	i = 0;
 	x = 0;

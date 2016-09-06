@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 14:54:48 by kioulian          #+#    #+#             */
-/*   Updated: 2016/09/06 09:34:52 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/09/06 12:16:56 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct	s_to
 	int				y;
 	int				max_x;
 	int				old_x;
-	struct termios	b_tattr; //Save a pointer to the old terminal to reset
+	struct termios	b_tattr;
 }				t_to;
 
 void			init_term(t_to *to);

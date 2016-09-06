@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/25 14:52:44 by kioulian          #+#    #+#             */
-/*   Updated: 2016/08/27 17:08:18 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/09/06 12:15:54 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,12 @@ void	init_term(t_to *term)
 	tgetent(NULL, getenv("TERM"));
 	tcgetattr(0, &term->tattr);
 	tcgetattr(0, &term->b_tattr);
-	tputs(tgetstr("ti", NULL), 1, ft_ft_putchar); //Clears the screen
-	tputs(tgetstr("ho", NULL), 1, ft_ft_putchar); //Places cursor at top left of screen
+	tputs(tgetstr("ti", NULL), 1, ft_ft_putchar);
+	tputs(tgetstr("ho", NULL), 1, ft_ft_putchar);
 	term->tattr.c_lflag &= ~(ECHO | ICANON);
 	term->tattr.c_cc[VMIN] = 1;
 	term->tattr.c_cc[VTIME] = 0;
 	tcsetattr(0, 0, &term->tattr);
-	//tputs(tgetstr("vi", NULL), 1, ft_ft_putchar); make the cursor invisible.
 	term->x = 0;
 	term->y = 0;
 	term->max_x = 0;
