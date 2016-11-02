@@ -12,6 +12,8 @@
 
 #include "twentyonesh.h"
 
+pid_t	PID = -1;
+
 int		search_commands(t_env *e)
 {
 	if (ft_strcmp(e->args[0], "cd") == 0)
@@ -37,9 +39,17 @@ int		search_commands(t_env *e)
 
 void	process_line(t_env *e)
 {
-	e->args = ft_strsplit(e->line, ' ');
-	if (search_commands(e) > 0)
-		run_command(e);
+	int	i;
+
+	i = 0;
+	e->commands = ft_strsplit(e->line, ';');
+	while (e->commands[i])
+	{
+		e->args = ft_strsplit(e->commands[i], ' ');
+		if (search_commands(e) > 0)
+			run_command(e);
+		i++;
+	}
 }
 
 void	begin_shell(t_env *e, t_to *to)
@@ -69,6 +79,7 @@ int		main(void)
 	t_env		e;
 	t_to		to;
 
+	signal(SIGINT, signal_c);
 	e.line = NULL;
 	get_environ(&e);
 	init_term(&to);
