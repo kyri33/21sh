@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/06 12:14:06 by kioulian          #+#    #+#             */
-/*   Updated: 2016/11/06 11:59:57 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/11/06 12:48:24 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int		ft_getline(char **line, t_to *to)
 		check = 0;
 		ft_strclr(b);
 		read(0, b, 6);
-		if (ft_isprint(b[0]))
+		/*if (ft_isprint(b[0]))
 			check = ft_add(b[0], line, to);
 		else if (b[0] == 10)
 			return (ft_newline(to, line));
@@ -78,8 +78,10 @@ int		ft_getline(char **line, t_to *to)
 			check = ft_move_cursor(b[2], to, line);
 		else if (b[0] == 127)
 			check = ft_backspace(to, line);
+		else if (b[0] == 9)
+			;
 		else
-		{
+		{*/
 			int	i = 0;
 			while (b[i])
 			{
@@ -87,7 +89,7 @@ int		ft_getline(char **line, t_to *to)
 				ft_putchar(' ');
 				i++;
 			}
-		}
+		//}
 		if (check)
 			ft_showline(*line, to);
 	}
