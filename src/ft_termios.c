@@ -6,7 +6,7 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/06 12:14:06 by kioulian          #+#    #+#             */
-/*   Updated: 2016/09/06 12:14:48 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/11/06 11:59:57 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		ft_add(char c, char **line, t_to *to)
 int		ft_newline(t_to *to, char **line)
 {
 	ft_putstr("\n");
-	if (*line && *line[0])
+	if (*line && *line[0] && *line[0] != ' ')
 		to->history = ft_addhistory(to->history, *line);
 	to->x = 0;
 	to->y = 0;

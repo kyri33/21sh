@@ -6,13 +6,13 @@
 /*   By: kioulian <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/20 18:37:09 by kioulian          #+#    #+#             */
-/*   Updated: 2016/09/06 12:15:14 by kioulian         ###   ########.fr       */
+/*   Updated: 2016/11/06 11:58:08 by kioulian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "twentyonesh.h"
 
-pid_t	PID = -1;
+pid_t	g_pid = -1;
 
 int		search_commands(t_env *e)
 {
@@ -49,22 +49,24 @@ void	process_line(t_env *e)
 		if (search_commands(e) > 0)
 			run_command(e);
 		i++;
+		if (e->args)
+			free_tab(e->args);
 	}
+	if (e->commands)
+		free_tab(e->commands);
 }
 
 void	begin_shell(t_env *e, t_to *to)
 {
 	ft_putstr("21$h > ");
 	ft_getline(&e->line, to);
-	if (e->line)
+	if (e->line && e->line[0] != ' ')
 	{
 		if (ft_strcmp(e->line, "exit") != 0)
 		{
 			process_line(e);
 			free(e->line);
 			e->line = NULL;
-			if (e->args)
-				free_tab(e->args);
 			begin_shell(e, to);
 		}
 		else
